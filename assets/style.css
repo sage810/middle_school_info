@@ -1,0 +1,172 @@
+/* 신현중학교 정보 · 수업 사이트 공통 스타일
+   pages/design-handoff 캔버스 디자인(파스텔 색 + 굵은 테두리 + 그림자)을 그대로 옮겨온 것 */
+
+@font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Maplestory'; src: url('fonts/Maplestory-Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+@font-face { font-family: 'Maplestory'; src: url('fonts/Maplestory-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'GangwonEdu'; src: url('fonts/GangwonEduTteunTteun.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+
+:root {
+  --ink: #4b3b6b;
+  --bg: #e7e3f7;
+  --grid: #d8d2ee;
+  --card: #fffdf7;
+  --pink: #f9cade;
+  --purple: #d6c4f5;
+  --blue: #c4d8f7;
+  --mint: #bfe9dd;
+  --yellow: #fbe6a2;
+  --peach: #ffe0cc;
+  --shadow: rgba(75, 59, 107, .2);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Maplestory', sans-serif;
+  font-weight: 300;
+  color: var(--ink);
+  background: var(--bg);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+                     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+a { color: #c96a97; text-decoration: none; }
+a:hover { color: #8f6fd6; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 60px; display: flex; flex-direction: column; gap: 18px; }
+
+.panel {
+  background: var(--card);
+  border: 4px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: 8px 8px 0 var(--shadow);
+  overflow: hidden;
+}
+
+.panel-head {
+  padding: 16px 22px;
+  border-bottom: 4px solid var(--ink);
+  background: linear-gradient(90deg, var(--pink) 0%, var(--purple) 55%, var(--blue) 100%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.panel-head .title {
+  font-family: 'GangwonEdu', sans-serif;
+  font-size: 25px;
+  letter-spacing: .5px;
+}
+
+.tag {
+  font-family: 'Silkscreen', monospace;
+  font-size: 11px;
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  padding: 4px 8px;
+  display: inline-block;
+}
+
+.panel-body { padding: 24px 22px 30px; }
+
+.eyebrow {
+  font-family: 'Silkscreen', monospace;
+  font-size: 11px;
+  color: #6b5b93;
+}
+
+h1.big {
+  font-family: 'GangwonEdu', sans-serif;
+  font-size: 34px;
+  margin: 6px 0 0;
+}
+
+h2.section {
+  font-family: 'CookieRun', sans-serif;
+  font-weight: 700;
+  font-size: 21px;
+  margin: 26px 0 4px;
+}
+
+p.mini { font-size: 14px; color: #8b7cb8; margin: 0 0 14px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  display: block;
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: 5px 5px 0 var(--shadow);
+  overflow: hidden;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--shadow);
+  color: var(--ink);
+}
+
+.card .card-head {
+  padding: 8px 12px;
+  border-bottom: 3px solid var(--ink);
+  font-family: 'Silkscreen', monospace;
+  font-size: 11px;
+}
+
+.card .card-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+
+.card .card-title {
+  font-family: 'CookieRun', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.card .card-desc { font-size: 13.5px; color: #8b7cb8; line-height: 1.5; }
+
+.card.locked { cursor: default; filter: grayscale(.35); opacity: .75; }
+.card.locked:hover { transform: none; box-shadow: 5px 5px 0 var(--shadow); }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'CookieRun', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 8px 16px;
+  border: 3px solid var(--ink);
+  border-radius: 10px;
+  background: var(--card);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+.footer {
+  text-align: center;
+  font-size: 13px;
+  color: #6b7fa8;
+  padding-top: 4px;
+}
+
+.placeholder-box {
+  border: 3px dashed #b3a8cc;
+  border-radius: 10px;
+  background: repeating-linear-gradient(45deg, var(--card), var(--card) 10px, #f8f1e2 10px, #f8f1e2 20px);
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Silkscreen', monospace;
+  font-size: 12px;
+  color: #9c8dc4;
+}

@@ -1,0 +1,7 @@
+# Claude Design 원본 캔버스(참고용 소스) — 배포에는 필요한 폰트만 assets/fonts로 복사해서 사용
+design-handoff/
+design-handoff.zip
+
+# OS 임시 파일
+Thumbs.db
+.DS_Store
