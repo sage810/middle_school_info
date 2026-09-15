@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>신현중학교 정보 수업 활동지</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏫</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Black.ttf') format('truetype'); font-weight: 900; font-display: swap; }
+  @font-face { font-family: 'Maplestory'; src: url('fonts/Maplestory-Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+  @font-face { font-family: 'Maplestory'; src: url('fonts/Maplestory-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'GangwonEdu'; src: url('fonts/GangwonEduTteunTteun.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Maplestory', sans-serif;
+    font-weight: 300;
+    color: #4b3b6b;
+    background: #e7e3f7;
+    background-image:
+      linear-gradient(#d8d2ee 1px, transparent 1px),
+      linear-gradient(90deg, #d8d2ee 1px, transparent 1px);
+    background-size: 28px 28px;
+    min-height: 100vh;
+    padding: 28px 16px 60px;
+  }
+  a { color: #c96a97; }
+  a:hover { color: #8f6fd6; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+
+  .frame {
+    background: #fffdf7;
+    border: 4px solid #4b3b6b;
+    border-radius: 16px;
+    box-shadow: 8px 8px 0 rgba(75,59,107,.22);
+    overflow: hidden;
+  }
+
+  .titlebar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-bottom: 4px solid #4b3b6b;
+    background: linear-gradient(90deg, #f9cade 0%, #d6c4f5 55%, #c4d8f7 100%);
+    flex-wrap: wrap;
+  }
+  .titlebar h1 {
+    font-family: 'GangwonEdu', sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+    margin: 0;
+    letter-spacing: .5px;
+    white-space: nowrap;
+  }
+  .titlebar .spacer { flex: 1; }
+  .winbtns { display: flex; gap: 6px; }
+  .winbtns span {
+    width: 26px; height: 22px;
+    border: 3px solid #4b3b6b; border-radius: 5px;
+    background: #fffdf7;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+  }
+  .winbtns span:last-child { background: #f7a8c4; }
+
+  .content { padding: 24px 22px 30px; display: flex; flex-direction: column; gap: 26px; }
+
+  .intro {
+    border: 3px solid #4b3b6b;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fdf6fa;
+    box-shadow: 5px 5px 0 rgba(75,59,107,.18);
+  }
+  .intro .tag {
+    padding: 8px 14px;
+    border-bottom: 3px solid #4b3b6b;
+    background: #f9cade;
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px;
+  }
+  .intro .body { padding: 16px 18px; font-size: 15px; line-height: 1.7; }
+
+  .unit { display: flex; flex-direction: column; gap: 14px; }
+  .unit-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .unit-head h2 {
+    font-family: 'GangwonEdu', sans-serif;
+    font-weight: 400;
+    font-size: 26px;
+    margin: 0;
+  }
+  .unit-head .badge {
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px;
+    border: 3px solid #4b3b6b;
+    border-radius: 6px;
+    padding: 4px 8px;
+    background: #fbe6a2;
+  }
+
+  .lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .lesson-card {
+    display: block;
+    border: 3px solid #4b3b6b;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 5px 5px 0 rgba(75,59,107,.2);
+    transition: transform .08s ease, box-shadow .08s ease;
+    background: #fffdf7;
+  }
+  .lesson-card:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 rgba(75,59,107,.2);
+  }
+  .lesson-card .head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 12px;
+    border-bottom: 3px solid #4b3b6b;
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px;
+  }
+  .lesson-card .head .open { font-size: 10px; opacity: .75; }
+  .lesson-card .body { padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .lesson-card .num {
+    font-family: 'CookieRun', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #8b7cb8;
+  }
+  .lesson-card .name {
+    font-family: 'CookieRun', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  .lesson-card .desc { font-size: 13px; color: #8b7cb8; line-height: 1.6; }
+
+  .lesson-card.locked {
+    cursor: default;
+    opacity: .55;
+    filter: saturate(.5);
+  }
+  .lesson-card.locked:hover { transform: none; box-shadow: 5px 5px 0 rgba(75,59,107,.2); }
+
+  footer {
+    text-align: center;
+    font-family: 'Silkscreen', monospace;
+    font-size: 10px;
+    color: #9186ad;
+    padding: 6px 0 0;
+  }
+
+  @media (max-width: 520px) {
+    .titlebar h1 { font-size: 20px; }
+    .content { padding: 18px 14px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="frame">
+
+    <div class="titlebar">
+      <h1>🏫 신현중학교 정보</h1>
+      <div class="spacer"></div>
+      <div class="winbtns"><span>_</span><span>□</span><span>X</span></div>
+    </div>
+
+    <div class="content">
+
+      <div class="intro">
+        <div class="tag">WELCOME</div>
+        <div class="body">
+          우리 반 정보 수업 활동지를 모아둔 곳이에요.<br>
+          아래 차시에서 오늘 수업을 눌러 시작해요.
+        </div>
+      </div>
+
+      <!-- ============================================================
+           차시 목록은 이 파일 하나만 고치면 됩니다.
+           - 유닛(unit) 제목/색은 자유롭게 바꾸세요.
+           - lesson.file 에는 실제로 만든 활동지 html 파일명을 적어요.
+           - lesson.locked: true 로 두면 카드가 흐리게 표시되고 링크가 걸리지 않아요
+             (아직 활동지를 안 만든 차시는 이렇게 자리만 잡아두면 됩니다).
+           ============================================================ -->
+      <div id="units"></div>
+
+    </div>
+  </div>
+  <footer>MADE WITH ❤ FOR OUR CLASS</footer>
+</div>
+
+<script>
+// 유닛(단원)과 차시 목록 — 여기만 고치면 홈페이지 전체가 업데이트됩니다.
+const UNITS = [
+  {
+    title: "크리에이터 데뷔 프로젝트",
+    badge: "UNIT_01",
+    badgeColor: "#f9cade",
+    lessons: [
+      { num: "1차시", title: "디지털 데이터란?", desc: "활동지를 만들면 여기 설명을 채워요.", file: "lesson01.html" },
+      { num: "2차시", title: "파일 확장자와 용량", desc: "", file: "lesson02.html", locked: true },
+    ]
+  },
+  {
+    title: "문제 정하기와 데이터 정리",
+    badge: "UNIT_02",
+    badgeColor: "#c4d8f7",
+    lessons: [
+      { num: "3차시", title: "풀 수 있는 문제 정하기", desc: "", file: "lesson03.html", locked: true },
+    ]
+  },
+  {
+    title: "데이터 분석 과정",
+    badge: "UNIT_03",
+    badgeColor: "#bfe9dd",
+    lessons: [
+      { num: "4차시", title: "스프레드시트 기초", desc: "", file: "lesson04.html", locked: true },
+      { num: "5차시", title: "데이터 시각화", desc: "", file: "lesson05.html", locked: true },
+    ]
+  },
+  {
+    title: "데이터 과학과 진로",
+    badge: "UNIT_04",
+    badgeColor: "#fbe6a2",
+    lessons: [
+      { num: "6차시", title: "데이터로 하는 일들", desc: "", file: "lesson06.html", locked: true },
+    ]
+  },
+];
+
+const unitsEl = document.getElementById('units');
+UNITS.forEach((unit, ui) => {
+  const section = document.createElement('div');
+  section.className = 'unit';
+
+  const head = document.createElement('div');
+  head.className = 'unit-head';
+  head.innerHTML =
+    '<h2>' + unit.title + '</h2>' +
+    '<span class="badge" style="background:' + unit.badgeColor + '">' + unit.badge + '</span>';
+  section.appendChild(head);
+
+  const grid = document.createElement('div');
+  grid.className = 'lesson-grid';
+
+  unit.lessons.forEach((lesson) => {
+    const isLocked = !!lesson.locked;
+    const card = document.createElement(isLocked ? 'div' : 'a');
+    if (!isLocked) card.href = lesson.file;
+    card.className = 'lesson-card' + (isLocked ? ' locked' : '');
+    card.innerHTML =
+      '<div class="head" style="background:' + unit.badgeColor + '">' +
+        '<span>' + lesson.num.toUpperCase() + '</span>' +
+        '<span class="open">' + (isLocked ? '준비 중' : '▶ 열기') + '</span>' +
+      '</div>' +
+      '<div class="body">' +
+        '<div class="num">' + lesson.num + '</div>' +
+        '<div class="name">' + lesson.title + '</div>' +
+        (lesson.desc ? '<div class="desc">' + lesson.desc + '</div>' : '') +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  section.appendChild(grid);
+  unitsEl.appendChild(section);
+});
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>1차시 · 디지털 데이터란? | 신현중학교 정보</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'Maplestory'; src: url('fonts/Maplestory-Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+  @font-face { font-family: 'Maplestory'; src: url('fonts/Maplestory-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'GangwonEdu'; src: url('fonts/GangwonEduTteunTteun.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Maplestory', sans-serif;
+    font-weight: 300;
+    color: #4b3b6b;
+    background: #e7e3f7;
+    background-image:
+      linear-gradient(#d8d2ee 1px, transparent 1px),
+      linear-gradient(90deg, #d8d2ee 1px, transparent 1px);
+    background-size: 28px 28px;
+    min-height: 100vh;
+    padding: 28px 16px 60px;
+  }
+  a { color: #c96a97; }
+  a:hover { color: #8f6fd6; }
+  input, textarea { font-family: 'Maplestory', sans-serif; color: #4b3b6b; }
+  input::placeholder, textarea::placeholder { color: #b3a8cc; }
+
+  .wrap { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+
+  .back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    text-decoration: none; color: #4b3b6b;
+    width: fit-content;
+  }
+
+  .frame {
+    background: #fffdf7;
+    border: 4px solid #4b3b6b;
+    border-radius: 16px;
+    box-shadow: 8px 8px 0 rgba(75,59,107,.22);
+    overflow: hidden;
+  }
+  .titlebar {
+    padding: 14px 18px;
+    border-bottom: 4px solid #4b3b6b;
+    background: linear-gradient(90deg, #f9cade 0%, #d6c4f5 55%, #c4d8f7 100%);
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .titlebar .badge {
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    background: #fffdf7; border: 3px solid #4b3b6b; border-radius: 6px;
+    padding: 4px 8px;
+  }
+  .titlebar h1 {
+    font-family: 'GangwonEdu', sans-serif; font-weight: 400;
+    font-size: 26px; margin: 0;
+  }
+  .content { padding: 22px 20px 28px; display: flex; flex-direction: column; gap: 18px; }
+
+  .card {
+    border: 3px solid #4b3b6b;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 5px 5px 0 rgba(75,59,107,.18);
+    background: #fffdf7;
+  }
+  .card .tag {
+    padding: 8px 14px;
+    border-bottom: 3px solid #4b3b6b;
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .card .inner { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 12px; }
+
+  .card.info .tag { background: #c4d8f7; }
+  .card.info { background: #f4f8fe; }
+  .field-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px;
+  }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-family: 'CookieRun', sans-serif; font-weight: 700; font-size: 14px; }
+  .field input {
+    padding: 10px 12px; border: 3px solid #4b3b6b; border-radius: 9px;
+    background: #fdf6fa; font-size: 15px; outline: none;
+  }
+  .field input:focus { border-color: #ee9dbf; background: #fff; }
+
+  .card.act1 .tag { background: #a9dce4; }
+  .card.act1 { background: #eef9f8; }
+  .card.act2 .tag { background: #fbe6a2; }
+  .card.act2 { background: #fffaee; }
+
+  .qhead { display: flex; align-items: center; gap: 10px; }
+  .qnum {
+    width: 30px; height: 30px; flex: none;
+    border: 3px solid #4b3b6b; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Silkscreen', monospace; font-size: 12px;
+    background: #a9dce4;
+  }
+  .qtitle { font-family: 'CookieRun', sans-serif; font-weight: 700; font-size: 19px; }
+  .hint { font-size: 13px; color: #8b7cb8; }
+  textarea {
+    min-height: 90px; resize: vertical; padding: 13px;
+    border: 3px solid #4b3b6b; border-radius: 10px;
+    background: #fff; font-size: 15px; line-height: 1.7; outline: none;
+  }
+  textarea:focus { border-color: #ee9dbf; }
+
+  .save-btn {
+    align-self: flex-start;
+    font-family: 'CookieRun', sans-serif; font-weight: 700; font-size: 15px;
+    padding: 10px 22px;
+    border: 3px solid #4b3b6b; border-radius: 10px;
+    background: #f7a8c4; color: #4b3b6b;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 rgba(75,59,107,.25);
+  }
+  .save-btn:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 rgba(75,59,107,.25); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← 목록으로</a>
+
+  <div class="frame">
+    <div class="titlebar">
+      <span class="badge">LESSON_01</span>
+      <h1>디지털 데이터란?</h1>
+    </div>
+
+    <div class="content">
+
+      <div class="card info">
+        <div class="tag">MY_INFO</div>
+        <div class="inner">
+          <div class="field-grid">
+            <div class="field"><label>학년</label><input type="text" placeholder="3"></div>
+            <div class="field"><label>반</label><input type="text" placeholder="2"></div>
+            <div class="field"><label>번호</label><input type="text" placeholder="11"></div>
+            <div class="field"><label>이름</label><input type="text" placeholder="이름을 적어요"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card act1">
+        <div class="tag"><span>ACTIVITY_1</span><span>WRITE</span></div>
+        <div class="inner">
+          <div class="qhead">
+            <div class="qnum">1</div>
+            <div class="qtitle">여기에 첫 번째 질문을 적어요</div>
+          </div>
+          <div class="hint">예) 힌트나 예시 문구를 여기 넣어요.</div>
+          <textarea placeholder="여기에 적어요"></textarea>
+        </div>
+      </div>
+
+      <div class="card act2">
+        <div class="tag"><span>ACTIVITY_2</span><span>CHECK</span></div>
+        <div class="inner">
+          <div class="qhead">
+            <div class="qnum">2</div>
+            <div class="qtitle">여기에 두 번째 질문을 적어요</div>
+          </div>
+          <textarea placeholder="여기에 적어요"></textarea>
+        </div>
+      </div>
+
+      <button class="save-btn" onclick="alert('활동지 저장 기능은 필요에 맞게 만들어 넣어요.')">저장하기</button>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+# 신현중학교 정보 수업 활동지
+
+정보 수업 차시별 인터랙티브 활동지 모음입니다. 빌드 도구 없이 HTML·CSS·JS 파일을 GitHub Pages가 그대로 서빙합니다.
+
+**보기** → https://sage810.github.io/middle_school_info/
+
+## 구조
+
+| 파일 | 내용 |
+| --- | --- |
+| `index.html` | 홈페이지. 파일 안의 `UNITS` 배열 하나로 전체 유닛·차시 목록을 관리합니다 |
+| `lessonNN.html` | 차시별 활동지. `lesson01.html`을 복사해서 새 차시를 만드세요 |
+| `fonts/` | CookieRun, Maplestory, 강원교육튼튼 폰트 파일 |
+| `.nojekyll` | GitHub Pages 배포에 필요한 빈 파일 (지우지 마세요) |
+
+## 새 차시 추가하는 법
+
+1. `lesson01.html`을 복사해서 `lessonNN.html`로 이름을 바꾸고 내용을 채웁니다.
+2. `index.html`의 `UNITS` 배열에서 해당 차시 항목을 찾아 `file`을 방금 만든 파일명으로, `locked`를 지우거나 `false`로 바꿉니다.
+3. 커밋 후 1~3분 뒤 GitHub Pages에 반영됩니다.
+
+## 배포 설정 (처음 한 번만)
+
+저장소 **Settings → Pages**에서 Source를 `Deploy from a branch`, Branch를 `main` / `/(root)`로 설정하세요.
