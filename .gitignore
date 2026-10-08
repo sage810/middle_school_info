@@ -1,0 +1,33 @@
+# OS 파일
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+$RECYCLE.BIN/
+*.lnk
+
+# 임시 / 작업 파일
+*.tmp
+*.bak
+~$*
+scratchpad/
+
+# 에디터 설정
+.vscode/
+.idea/
+*.code-workspace
+
+# Claude Code 작업용 임시 워크트리
+.claude/worktrees/
+
+# Node — 설치물과 빌드 결과 (빌드 결과는 GitHub Actions 가 매번 새로 만든다)
+node_modules/
+dist/
+
+# 보안: API 인증키 / 비밀정보 (NEIS 키는 Apps Script 의 스크립트 속성에 둔다)
+.env
+.env.*
+scripts/neis.local.ps1
+**/*.local.ps1
+**/neis.config.js
+secrets/

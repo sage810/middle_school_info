@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'GangwonEdu'; font-weight: 400; font-display: swap; src: url('https://cdn.jsdelivr.net/gh/fonts-archive/GangwonEduPower/GangwonEduPower.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/fonts-archive/GangwonEduPower/GangwonEduPower.woff') format('woff'); }
+  @font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'Maplestory'; src: url('fonts/Maplestory-Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+  @font-face { font-family: 'Maplestory'; src: url('fonts/Maplestory-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Maplestory', sans-serif; font-weight: 300; color: #4b3b6b; }
+  a { color: #c96a97; }
+  a:hover { color: #8f6fd6; }
+  input, textarea, select, button { font-family: 'Maplestory', sans-serif; font-weight: 300; color: #4b3b6b; }
+  input::placeholder, textarea::placeholder { color: #b3a8cc; }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+</style>
+</helmet>
+<div style="zoom:1.1; minHeight:calc(100vh / 1.1); padding:28px 20px 60px; background:#e7e3f7; backgroundImage:linear-gradient(#d8d2ee 1px, transparent 1px), linear-gradient(90deg, #d8d2ee 1px, transparent 1px); backgroundSize:28px 28px">
+  <div style="maxWidth:1080px; margin:0 auto; display:flex; flexDirection:column; gap:18px">
+
+    <div style="display:flex; alignItems:flex-end; gap:14px; flexWrap:wrap">
+      
+      
+    </div>
+
+    <div style="background:#fffdf7; border:4px solid #4b3b6b; borderRadius:16px; boxShadow:8px 8px 0 rgba(75,59,107,.22); overflow:hidden">
+
+      <div style="display:flex; alignItems:flex-end; gap:14px; padding:14px 16px 0; borderBottom:4px solid #4b3b6b; background:linear-gradient(90deg,#f9cade 0%,#d6c4f5 55%,#c4d8f7 100%)">
+        <div style="fontFamily:'GangwonEdu', sans-serif; fontSize:25px; letterSpacing:.5px; flex:none; whiteSpace:nowrap; paddingBottom:12px">🏫 신현중학교 정보</div>
+        <div style="flex:1"></div>
+        <div style="display:flex; gap:4px; alignItems:flex-end">
+          <div onClick="{{ goRules }}" style="{{ tabRules }}"><span>📜</span><span>이용 규칙</span></div>
+          <div onClick="{{ goTime }}" style="{{ tabTime }}"><span>🕒</span><span>시간표</span></div>
+          <div onClick="{{ goMeal }}" style="{{ tabMeal }}"><span>🍚</span><span>오늘의 급식</span></div>
+          <div onClick="{{ goSheet }}" style="{{ tabSheet }}"><span>✏️</span><span>수업 활동지</span></div>
+        </div>
+        <div style="display:flex; gap:6px; paddingBottom:12px">
+          <div style="width:26px; height:22px; border:3px solid #4b3b6b; borderRadius:5px; background:#fffdf7; display:flex; alignItems:center; justifyContent:center; fontFamily:'Silkscreen',monospace; fontSize:11px">_</div>
+          <div style="width:26px; height:22px; border:3px solid #4b3b6b; borderRadius:5px; background:#fffdf7; display:flex; alignItems:center; justifyContent:center; fontFamily:'Silkscreen',monospace; fontSize:9px">□</div>
+          <div style="width:26px; height:22px; border:3px solid #4b3b6b; borderRadius:5px; background:#f7a8c4; display:flex; alignItems:center; justifyContent:center; fontFamily:'Silkscreen',monospace; fontSize:10px">X</div>
+        </div>
+      </div>
+
+      
+
+      <div style="padding:24px 22px 30px">
+
+        <sc-if value="{{ isRules }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; flexDirection:column; gap:18px">
+            <div style="display:flex; alignItems:center; gap:12px">
+              <div style="fontFamily:'GangwonEdu',sans-serif; fontSize:30px">컴퓨터실 이용 규칙</div>
+              <div style="fontFamily:'Silkscreen',monospace; fontSize:11px; background:#fbe6a2; border:3px solid #4b3b6b; borderRadius:6px; padding:4px 8px">READ ME</div>
+            </div>
+
+            <div style="border:4px solid #4b3b6b; borderRadius:14px; background:#fdf6fa; boxShadow:6px 6px 0 rgba(75,59,107,.2); overflow:hidden">
+              <div style="padding:9px 14px; borderBottom:3px solid #4b3b6b; background:linear-gradient(90deg,#f9cade,#d6c4f5); fontFamily:'Silkscreen',monospace; fontSize:11px">HOW_TO_USE.txt</div>
+              <div style="padding:18px 20px 20px; display:flex; flexDirection:column; gap:14px">
+                <div style="fontFamily:'GangwonEdu',sans-serif; fontSize:26px">컴퓨터실, 이렇게 사용해요!</div>
+                <div style="display:grid; gridTemplateColumns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px">
+                  <div style="display:flex; alignItems:center; gap:10px; padding:12px 14px; border:3px solid #4b3b6b; borderRadius:11px; background:#bfe9dd; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:16px">
+                    <span style="width:30px; height:30px; flex:none; border:3px solid #4b3b6b; borderRadius:8px; background:#fffdf7; display:flex; alignItems:center; justifyContent:center; fontSize:15px">🧴</span>
+                    <span>손소독제 or 손씻기</span>
+                  </div>
+                  <div style="display:flex; alignItems:center; gap:10px; padding:12px 14px; border:3px solid #4b3b6b; borderRadius:11px; background:#c4d8f7; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:16px">
+                    <span style="width:30px; height:30px; flex:none; border:3px solid #4b3b6b; borderRadius:8px; background:#fffdf7; display:flex; alignItems:center; justifyContent:center; fontSize:15px">🪑</span>
+                    <span>자기 자리 앉기</span>
+                  </div>
+                  <div style="display:flex; alignItems:center; gap:10px; padding:12px 14px; border:3px solid #4b3b6b; borderRadius:11px; background:#fbe6a2; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:16px">
+                    <span style="width:30px; height:30px; flex:none; border:3px solid #4b3b6b; borderRadius:8px; background:#fffdf7; display:flex; alignItems:center; justifyContent:center; fontSize:15px">🚫</span>
+                    <span>물 &amp; 음료 &amp; 간식 X</span>
+                  </div>
+                  <div style="display:flex; alignItems:center; gap:10px; padding:12px 14px; border:3px solid #4b3b6b; borderRadius:11px; background:#f7bfb2; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:16px">
+                    <span style="width:30px; height:30px; flex:none; border:3px solid #4b3b6b; borderRadius:8px; background:#fffdf7; display:flex; alignItems:center; justifyContent:center; fontSize:15px">🚫</span>
+                    <span>의자 이동 X</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:grid; gridTemplateColumns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px">
+              <div style="border:3px solid #4b3b6b; borderRadius:12px; background:#fdf3f8; boxShadow:5px 5px 0 rgba(75,59,107,.18); overflow:hidden">
+                <div style="padding:8px 12px; borderBottom:3px solid #4b3b6b; background:#f9cade; fontFamily:'Silkscreen',monospace; fontSize:11px">RULE_01.txt</div>
+                <div style="padding:14px 16px; display:flex; flexDirection:column; gap:8px; fontSize:15px; lineHeight:1.7">
+                  <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:19px">들어올 때</div>
+                  <div>• 손을 씻고 들어와요.</div>
+                  <div>• 내 자리 번호를 확인하고 앉아요.</div>
+                  <div>• 수업을 위해 로그인을 먼저 하고, 타자 연습을 해요.</div>
+                </div>
+              </div>
+              <div style="border:3px solid #4b3b6b; borderRadius:12px; background:#f2f6fe; boxShadow:5px 5px 0 rgba(75,59,107,.18); overflow:hidden">
+                <div style="padding:8px 12px; borderBottom:3px solid #4b3b6b; background:#c4d8f7; fontFamily:'Silkscreen',monospace; fontSize:11px">RULE_02.txt</div>
+                <div style="padding:14px 16px; display:flex; flexDirection:column; gap:8px; fontSize:15px; lineHeight:1.7">
+                  <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:19px">사용할 때</div>
+                  <div>• 수업 할 때는 수업과 관련되지 않은 걸 하지 않아요.</div>
+                  <div>• 친구 노트북을 함부로 만지지 않아요.</div>
+                  <div>• 궁금한 건 손을 들고 물어봐요.</div>
+                </div>
+              </div>
+              <div style="border:3px solid #4b3b6b; borderRadius:12px; background:#f2fbf7; boxShadow:5px 5px 0 rgba(75,59,107,.18); overflow:hidden">
+                <div style="padding:8px 12px; borderBottom:3px solid #4b3b6b; background:#bfe9dd; fontFamily:'Silkscreen',monospace; fontSize:11px">RULE_03.txt</div>
+                <div style="padding:14px 16px; display:flex; flexDirection:column; gap:8px; fontSize:15px; lineHeight:1.7">
+                  <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:19px">나갈 때</div>
+                  <div>• 노트북 모니터를 닫지 않아요.</div>
+                  <div>• 의자를 제자리에 넣어요.</div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex; gap:14px; flexWrap:wrap; alignItems:stretch">
+              <div style="flex:1; minWidth:280px; border:3px solid #4b3b6b; borderRadius:12px; background:#fffdf7; boxShadow:5px 5px 0 rgba(75,59,107,.18); overflow:hidden">
+                <div style="padding:8px 12px; borderBottom:3px solid #4b3b6b; background:#d6c4f5; fontFamily:'Silkscreen',monospace; fontSize:11px">MESSAGE</div>
+                <div style="padding:16px; display:flex; gap:14px; alignItems:center">
+                  <div style="width:54px; height:54px; borderRadius:50%; border:3px solid #4b3b6b; background:#f9cade; display:flex; alignItems:center; justifyContent:center; fontSize:26px; animation:floaty 3s ease-in-out infinite">♥</div>
+                  <div style="fontSize:15px; lineHeight:1.7">약속을 지키면 모두가 즐거운 수업이 돼요.<br>세 가지만 기억해요 — <b>조용히, 함께, 깨끗하게!</b></div>
+                </div>
+              </div>
+              <div style="width:210px; border:3px solid #4b3b6b; borderRadius:12px; background:#fffdf7; boxShadow:5px 5px 0 rgba(75,59,107,.18); overflow:hidden">
+                <div style="padding:8px 12px; borderBottom:3px solid #4b3b6b; background:#fbe6a2; fontFamily:'Silkscreen',monospace; fontSize:11px">LOADING</div>
+                <div style="padding:16px; display:flex; flexDirection:column; gap:10px">
+                  <div style="fontFamily:'Silkscreen',monospace; fontSize:10px">&gt; GOOD MANNERS 100%</div>
+                  <div style="height:16px; border:3px solid #4b3b6b; borderRadius:4px; display:flex; gap:2px; padding:2px; background:#fff">
+                    <div style="flex:1; background:#f7a8c4"></div>
+                    <div style="flex:1; background:#f7a8c4"></div>
+                    <div style="flex:1; background:#d6c4f5"></div>
+                    <div style="flex:1; background:#d6c4f5"></div>
+                    <div style="flex:1; background:#c4d8f7"></div>
+                    <div style="flex:1; background:#c4d8f7"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isTime }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flexDirection:column; gap:18px">
+            <div style="display:flex; alignItems:center; justifyContent:center; gap:12px; flexWrap:wrap">
+              <div style="fontFamily:'GangwonEdu',sans-serif; fontSize:30px">시간표</div>
+              <div style="border:3px solid #4b3b6b; borderRadius:10px; background:#fffdf7; padding:5px 14px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:16px; boxShadow:3px 3px 0 rgba(75,59,107,.18)">{{ todayLabel }}</div>
+<div style="fontFamily:'Silkscreen',monospace; fontSize:11px; background:#c4d8f7; border:3px solid #4b3b6b; borderRadius:6px; padding:4px 8px">TIMETABLE</div>
+              
+            </div>
+
+            
+
+            <div style="border:3px solid #4b3b6b; borderRadius:14px; background:#f7f4fd; padding:12px 22px; display:flex; gap:18px; justifyContent:center; alignItems:center; flexWrap:wrap; boxShadow:5px 5px 0 rgba(75,59,107,.18); alignSelf:center">
+              <div style="display:flex; alignItems:center; gap:10px">
+                <div style="fontFamily:'Silkscreen',monospace; fontSize:11px">GRADE</div>
+                <select value="{{ gradeVal }}" onChange="{{ setGrade }}" style="appearance:none; cursor:pointer; padding:9px 32px 9px 15px; border:3px solid #4b3b6b; borderRadius:10px; background:#fffdf7; backgroundImage:linear-gradient(45deg, transparent 50%, #4b3b6b 50%), linear-gradient(135deg, #4b3b6b 50%, transparent 50%); backgroundPosition:calc(100% - 18px) 19px, calc(100% - 13px) 19px; backgroundSize:5px 5px, 5px 5px; backgroundRepeat:no-repeat; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:16px; outline:none; boxShadow:3px 3px 0 rgba(75,59,107,.18)">
+                  <sc-for list="{{ gradeOpts }}" as="g" hint-placeholder-count="3">
+                    <option value="{{ g.value }}">{{ g.label }}</option>
+                  </sc-for>
+                </select>
+              </div>
+              <div style="display:flex; alignItems:center; gap:10px">
+                <div style="fontFamily:'Silkscreen',monospace; fontSize:11px">CLASS</div>
+                <select value="{{ classVal }}" onChange="{{ setCls }}" style="appearance:none; cursor:pointer; padding:9px 32px 9px 15px; border:3px solid #4b3b6b; borderRadius:10px; background:#fffdf7; backgroundImage:linear-gradient(45deg, transparent 50%, #4b3b6b 50%), linear-gradient(135deg, #4b3b6b 50%, transparent 50%); backgroundPosition:calc(100% - 18px) 19px, calc(100% - 13px) 19px; backgroundSize:5px 5px, 5px 5px; backgroundRepeat:no-repeat; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:16px; outline:none; boxShadow:3px 3px 0 rgba(75,59,107,.18)">
+                  <sc-for list="{{ classOpts }}" as="c" hint-placeholder-count="12">
+                    <option value="{{ c.value }}">{{ c.label }}</option>
+                  </sc-for>
+                </select>
+              </div>
+            </div><div style="display:flex; flexDirection:column; alignItems:center; gap:8px">
+              <div style="display:flex; gap:10px; justifyContent:center; flexWrap:wrap">
+                <sc-for list="{{ timeViews }}" as="v" hint-placeholder-count="3">
+                  <div onClick="{{ v.pick }}" style="{{ v.style }}">{{ v.label }}</div>
+                </sc-for>
+              </div>
+              
+            </div>
+
+            <sc-if value="{{ timeIsDay }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex; flexDirection:column; gap:12px; alignItems:center">
+                <div style="width: 100%; maxWidth: 560px; border: 3px solid #4b3b6b; overflow: hidden; background: #fffdf7; boxShadow: 5px 5px 0 rgba(75,59,107,.18); borderRadius: 12px">
+                  <sc-for list="{{ dayRows }}" as="r" hint-placeholder-count="7">
+                    <div style="{{ r.rowStyle }}">
+                      <div style="padding:12px 8px; textAlign:center; borderRight:3px solid #4b3b6b; background:#f7f4fd">
+                        <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px">{{ r.period }}</div>
+                        <div style="fontFamily:'Silkscreen',monospace; fontSize:8px; color:#8b7cb8">{{ r.time }}</div>
+                        <div style="fontFamily:'Silkscreen',monospace; fontSize:8px; color:#a89cc4">~{{ r.endTime }}</div>
+                      </div>
+                      <div style="padding:12px 16px; display:flex; alignItems:center; gap:11px">
+                        <div style="{{ r.tagStyle }}">{{ r.subject }}</div>
+                        <div style="flex:1"></div>
+                        <div style="{{ r.statusStyle }}">{{ r.statusLabel }}</div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ timeIsWeek }}" hint-placeholder-val="{{ false }}">
+              <div style="position:relative">
+              <div style="border:3px solid #4b3b6b; borderRadius:12px; overflow:hidden; boxShadow:5px 5px 0 rgba(75,59,107,.18)">
+                <div style="display:grid; gridTemplateColumns:78px repeat(5, 1fr); background:#d6c4f5; borderBottom:3px solid #4b3b6b">
+                  <div style="padding:10px 8px; fontFamily:'Silkscreen',monospace; fontSize:10px; textAlign:center; borderRight:3px solid #4b3b6b">TIME</div>
+                  <sc-for list="{{ weekHeads }}" as="h" hint-placeholder-count="5">
+                    <div style="{{ h.style }}">
+                      <div>{{ h.label }}</div>
+                      <div style="{{ h.dateStyle }}">{{ h.date }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <sc-for list="{{ weekRows }}" as="row" hint-placeholder-count="6">
+                  <div style="display:grid; gridTemplateColumns:78px repeat(5, 1fr); borderBottom:2px dashed rgba(75,59,107,.3); background:#fffdf7">
+                    <div style="padding:12px 6px; textAlign:center; borderRight:3px solid #4b3b6b; background:#f7f4fd">
+                      <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px">{{ row.period }}</div>
+                      <div style="fontFamily:'Silkscreen',monospace; fontSize:8px; color:#8b7cb8">{{ row.time }}</div>
+                      <div style="fontFamily:'Silkscreen',monospace; fontSize:8px; color:#a89cc4">~{{ row.endTime }}</div>
+                    </div>
+                    <sc-for list="{{ row.cells }}" as="cell" hint-placeholder-count="5">
+                      <div style="{{ cell.cellStyle }}">
+                        <div style="{{ cell.style }}">{{ cell.subject }}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ timeIsMonth }}" hint-placeholder-val="{{ false }}">
+              <div style="border:3px solid #4b3b6b; borderRadius:12px; overflow:hidden; boxShadow:5px 5px 0 rgba(75,59,107,.18); background:#fffdf7">
+                <div style="display:grid; gridTemplateColumns:repeat(7,1fr); background:#c4d8f7; borderBottom:3px solid #4b3b6b">
+                  <sc-for list="{{ dowHeads }}" as="d" hint-placeholder-count="7">
+                    <div style="padding:8px 4px; textAlign:center; fontFamily:'Silkscreen',monospace; fontSize:10px">{{ d }}</div>
+                  </sc-for>
+                </div>
+                <div style="display:grid; gridTemplateColumns:repeat(7,1fr)">
+                  <sc-for list="{{ monthCells }}" as="c" hint-placeholder-count="35">
+                    <div style="{{ c.boxStyle }}">
+                      <div style="display:flex; justifyContent:space-between; alignItems:center">
+                        <span style="{{ c.dayStyle }}">{{ c.day }}</span>
+                        <span style="fontSize:11px; color:#a596cc">{{ c.badge }}</span>
+                      </div>
+                      <sc-for list="{{ c.chips }}" as="ch" hint-placeholder-count="7">
+                        <div style="{{ ch.style }}">
+                          <span style="fontFamily:'Silkscreen',monospace; fontSize:8px">{{ ch.label }}</span>
+                          <span style="{{ ch.subStyle }}">{{ ch.sub }}</span>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+
+            <div style="display:flex; alignItems:flex-start; gap:10px; border:3px solid #4b3b6b; borderRadius:12px; background:#fbe6a2; padding:12px 16px; boxShadow:4px 4px 0 rgba(75,59,107,.18)">
+              <span style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#8a7132; paddingTop:3px">NOTE</span>
+              <span style="fontSize:15px; lineHeight:2; display:flex; alignItems:center; gap:6px; flexWrap:wrap">
+                <span style="border:2px solid #4b3b6b; borderRadius:7px; background:#c9c2ea; padding:2px 9px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:14px">동아리 활동</span>
+                <span>은</span>
+                <span style="border:2px solid #4b3b6b; borderRadius:7px; background:#a9dce4; padding:2px 9px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:14px">동아리 시간</span>
+                <span>일 수도 있고,</span>
+                <span style="border:2px solid #4b3b6b; borderRadius:7px; background:#f7bfb2; padding:2px 9px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:14px">학스 시간</span>
+                <span>일 수도 있어요.</span>
+              </span>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isMeal }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flexDirection:column; gap:18px">
+            <div style="display:flex; alignItems:center; justifyContent:center; gap:12px; flexWrap:wrap">
+              <div style="fontFamily:'GangwonEdu',sans-serif; fontSize:30px">오늘의 급식</div>
+              <div style="fontFamily:'Silkscreen',monospace; fontSize:11px; background:#bfe9dd; border:3px solid #4b3b6b; borderRadius:6px; padding:4px 8px">LUNCH.EXE</div>
+            </div>
+
+            <div style="display:flex; flexDirection:column; alignItems:center; gap:8px">
+              <div style="display:flex; gap:10px; justifyContent:center; flexWrap:wrap">
+                <sc-for list="{{ mealViews }}" as="v" hint-placeholder-count="3">
+                  <div onClick="{{ v.pick }}" style="{{ v.style }}">{{ v.label }}</div>
+                </sc-for>
+              </div>
+              
+            </div>
+
+            <sc-if value="{{ mealIsDay }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex; gap:16px; flexWrap:wrap; alignItems:stretch; justifyContent:center">
+                <div style="width:100%; maxWidth:560px; border:3px solid #4b3b6b; borderRadius:12px; overflow:hidden; background:#fffdf7; boxShadow:6px 6px 0 rgba(75,59,107,.2)">
+                  <div style="padding:9px 14px; borderBottom:3px solid #4b3b6b; background:#f9cade; display:flex; justifyContent:space-between; alignItems:center">
+                    <span style="fontFamily:'Silkscreen',monospace; fontSize:11px">TODAY_LUNCH</span>
+                    <span style="fontFamily:'Silkscreen',monospace; fontSize:10px">{{ todayMeal.date }}</span>
+                  </div>
+                  <div style="padding:18px; display:flex; flexDirection:column; gap:12px">
+                    <sc-for list="{{ todayMeal.items }}" as="m" hint-placeholder-count="5">
+                      <div style="display:flex; alignItems:center; justifyContent:center; gap:12px; padding:10px 12px; border:3px solid #4b3b6b; borderRadius:10px; background:#fdf6fa">
+                        <span style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:19px">{{ m.name }}</span>
+                        <span style="display:flex; gap:5px; flexWrap:wrap">
+                          <sc-for list="{{ m.allergens }}" as="a" hint-placeholder-count="2">
+                            <span style="{{ a.style }}">{{ a.label }}</span>
+                          </sc-for>
+                        </span>
+                      </div>
+                    </sc-for>
+                    <div style="display:flex; alignItems:center; justifyContent:center; gap:10px; padding:11px 14px; border:3px solid #4b3b6b; borderRadius:10px; background:#bfe9dd">
+                      <span style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#3d7f6c">TOTAL</span>
+                      <span style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:17px">오늘 전체 칼로리</span>
+                      <span style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:20px">{{ todayMeal.kcal }} kcal</span>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ mealIsWeek }}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid; gridTemplateColumns:repeat(auto-fit, minmax(190px,1fr)); gap:14px">
+                <sc-for list="{{ weekMeals }}" as="w" hint-placeholder-count="5">
+                  <div style="border:3px solid #4b3b6b; borderRadius:12px; overflow:hidden; background:#fffdf7; boxShadow:4px 4px 0 rgba(75,59,107,.18)">
+                    <div style="padding:8px 12px; borderBottom:3px solid #4b3b6b; background:{{ w.color }}; display:flex; justifyContent:space-between; alignItems:center">
+                      <span style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:17px">{{ w.day }}</span>
+                      <span style="fontFamily:'Silkscreen',monospace; fontSize:9px">{{ w.date }}</span>
+                    </div>
+                    <div style="padding:12px 14px; display:flex; flexDirection:column; gap:6px; fontSize:14px; lineHeight:1.6">
+                      <sc-for list="{{ w.items }}" as="i" hint-placeholder-count="5">
+                        <div>· {{ i }}</div>
+                      </sc-for>
+                      <div style="marginTop:6px; fontFamily:'Silkscreen',monospace; fontSize:9px; color:#9c8dc4">{{ w.kcal }} KCAL</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ mealIsMonth }}" hint-placeholder-val="{{ false }}">
+              <div style="border:3px solid #4b3b6b; borderRadius:12px; overflow:hidden; boxShadow:5px 5px 0 rgba(75,59,107,.18); background:#fffdf7">
+                <div style="display:grid; gridTemplateColumns:repeat(7,1fr); background:#bfe9dd; borderBottom:3px solid #4b3b6b">
+                  <sc-for list="{{ dowHeads }}" as="d" hint-placeholder-count="7">
+                    <div style="padding:8px 4px; textAlign:center; fontFamily:'Silkscreen',monospace; fontSize:10px">{{ d }}</div>
+                  </sc-for>
+                </div>
+                <div style="display:grid; gridTemplateColumns:repeat(7,1fr)">
+                  <sc-for list="{{ mealMonthCells }}" as="c" hint-placeholder-count="35">
+                    <div style="{{ c.boxStyle }}">
+                      <div style="display:flex; justifyContent:space-between; alignItems:center">
+                        <span style="{{ c.dayStyle }}">{{ c.day }}</span>
+                        
+                      </div>
+                      <div style="display:flex; flexDirection:column; alignItems:center; gap:2px; fontSize:11px; lineHeight:1.4; color:#6b5b93; textAlign:center">
+                        <sc-for list="{{ c.menu }}" as="mi" hint-placeholder-count="5">
+                          <div>{{ mi }}</div>
+                        </sc-for>
+                        <div>{{ c.main }}</div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSheet }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flexDirection:column; gap:18px">
+            <div style="display:flex; alignItems:center; gap:12px; flexWrap:wrap">
+              <div style="fontFamily:'GangwonEdu',sans-serif; fontSize:30px">수업 활동지</div>
+              <div style="fontFamily:'Silkscreen',monospace; fontSize:11px; background:#d6c4f5; border:3px solid #4b3b6b; borderRadius:6px; padding:4px 8px">WORKSHEET_01</div>
+            </div>
+
+            <div style="border:4px solid #4b3b6b; borderRadius:14px; overflow:hidden; background:#fdf6fa; boxShadow:6px 6px 0 rgba(75,59,107,.2)">
+              <div style="padding:9px 14px; borderBottom:3px solid #4b3b6b; background:linear-gradient(90deg,#f9cade,#d6c4f5); fontFamily:'Silkscreen',monospace; fontSize:11px">TODAY_TOPIC</div>
+              <div style="padding:20px 22px; display:flex; flexDirection:column; gap:8px">
+                
+                <div style="fontFamily:'GangwonEdu',sans-serif; fontSize:32px; lineHeight:1.3; textWrap:pretty">우리 학교를 소개하는 디지털 명함 만들기</div>
+                
+              </div>
+            </div>
+
+            <div style="border:3px solid #4b3b6b; borderRadius:12px; overflow:hidden; background:#fffdf7; boxShadow:5px 5px 0 rgba(75,59,107,.18)">
+              <div style="padding:8px 14px; borderBottom:3px solid #4b3b6b; background:#c4d8f7; fontFamily:'Silkscreen',monospace; fontSize:11px">MY_INFO</div>
+              <div style="padding:18px; display:grid; gridTemplateColumns:repeat(auto-fit, minmax(150px,1fr)); gap:14px">
+                <div style="display:flex; flexDirection:column; gap:6px">
+                  <label style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px">학년</label>
+                  <input type="text" placeholder="3" value="{{ fGrade }}" onChange="{{ setFGrade }}" style="padding:11px 12px; border:3px solid #4b3b6b; borderRadius:9px; background:#fdf6fa; fontSize:16px; outline:none" style-focus="padding:11px 12px; border:3px solid #ee9dbf; borderRadius:9px; background:#fff; fontSize:16px; outline:none">
+                </div>
+                <div style="display:flex; flexDirection:column; gap:6px">
+                  <label style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px">반</label>
+                  <input type="text" placeholder="2" value="{{ fClass }}" onChange="{{ setFClass }}" style="padding:11px 12px; border:3px solid #4b3b6b; borderRadius:9px; background:#fdf6fa; fontSize:16px; outline:none" style-focus="padding:11px 12px; border:3px solid #ee9dbf; borderRadius:9px; background:#fff; fontSize:16px; outline:none">
+                </div>
+                <div style="display:flex; flexDirection:column; gap:6px">
+                  <label style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px">번호</label>
+                  <input type="text" placeholder="11" value="{{ fNum }}" onChange="{{ setFNum }}" style="padding:11px 12px; border:3px solid #4b3b6b; borderRadius:9px; background:#fdf6fa; fontSize:16px; outline:none" style-focus="padding:11px 12px; border:3px solid #ee9dbf; borderRadius:9px; background:#fff; fontSize:16px; outline:none">
+                </div>
+                <div style="display:flex; flexDirection:column; gap:6px">
+                  <label style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px">이름</label>
+                  <input type="text" placeholder="이름을 적어요" value="{{ fName }}" onChange="{{ setFName }}" style="padding:11px 12px; border:3px solid #4b3b6b; borderRadius:9px; background:#fdf6fa; fontSize:16px; outline:none" style-focus="padding:11px 12px; border:3px solid #ee9dbf; borderRadius:9px; background:#fff; fontSize:16px; outline:none">
+                </div>
+              </div>
+            </div>
+
+            <div style="border:3px solid #4b3b6b; borderRadius:14px; overflow:hidden; background:#eef9f8; boxShadow:5px 5px 0 rgba(75,59,107,.18)">
+              <div style="padding:8px 14px; borderBottom:3px solid #4b3b6b; background:#a9dce4; display:flex; justifyContent:space-between; alignItems:center">
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:11px">ACTIVITY_1</span>
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#2f6b78">WRITE</span>
+              </div>
+              <div style="padding:18px 20px 20px; display:flex; flexDirection:column; gap:10px">
+                <div style="display:flex; alignItems:center; gap:10px">
+                  <div style="width:30px; height:30px; border:3px solid #4b3b6b; borderRadius:8px; background:#a9dce4; display:flex; alignItems:center; justifyContent:center; fontFamily:'Silkscreen',monospace; fontSize:12px">1</div>
+                  <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:20px">우리 학교를 떠올리는 낱말 세 개</div>
+                </div>
+                <div style="fontSize:14px; color:#8b7cb8">예) 넓은 운동장, 도서관 고양이, 급식실 카레</div>
+                <div style="display:grid; gridTemplateColumns:repeat(auto-fit, minmax(190px,1fr)); gap:12px">
+                  <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#ffe0cc; padding:12px 14px; display:flex; flexDirection:column; gap:5px">
+                    <div style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#8a5a35">HINT_01</div>
+                    <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:17px">학교 자랑거리</div>
+                    <div style="fontSize:14px; lineHeight:1.6">우리 학교에만 있는 것을 떠올려요.</div>
+                  </div>
+                  <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#d8f0c4; padding:12px 14px; display:flex; flexDirection:column; gap:5px">
+                    <div style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#4f7a33">HINT_02</div>
+                    <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:17px">우리 반 분위기</div>
+                    <div style="fontSize:14px; lineHeight:1.6">친구들과 함께한 순간을 낱말로 적어요.</div>
+                  </div>
+                  <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#cfeaf5; padding:12px 14px; display:flex; flexDirection:column; gap:5px">
+                    <div style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#356b80">HINT_03</div>
+                    <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:17px">나를 담은 낱말</div>
+                    <div style="fontSize:14px; lineHeight:1.6">내가 좋아하는 것도 한 개 넣어요.</div>
+                  </div>
+                </div>
+                <textarea placeholder="여기에 적어요" value="{{ a1 }}" onChange="{{ setA1 }}" style="minHeight:88px; resize:vertical; padding:13px; border:3px solid #4b3b6b; borderRadius:10px; background:#fff; fontSize:15px; lineHeight:1.7; outline:none"></textarea>
+              </div>
+            </div>
+
+            <div style="border:3px solid #4b3b6b; borderRadius:14px; overflow:hidden; background:#f4f8fe; boxShadow:5px 5px 0 rgba(75,59,107,.18)">
+              <div style="padding:8px 14px; borderBottom:3px solid #4b3b6b; background:#c4d8f7; display:flex; justifyContent:space-between; alignItems:center">
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:11px">ACTIVITY_2</span>
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#4f6a96">CHECK</span>
+              </div>
+              <div style="padding:18px 20px 20px; display:flex; flexDirection:column; gap:10px">
+                <div style="display:flex; alignItems:center; gap:10px">
+                  <div style="width:30px; height:30px; border:3px solid #4b3b6b; borderRadius:8px; background:#c4d8f7; display:flex; alignItems:center; justifyContent:center; fontFamily:'Silkscreen',monospace; fontSize:12px">2</div>
+                  <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:20px">활동 순서 체크</div>
+                </div>
+                <div style="display:flex; flexDirection:column; gap:8px">
+                  <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+                    <div onClick="{{ s.toggle }}" style="{{ s.style }}">
+                      <span style="{{ s.boxStyle }}">{{ s.mark }}</span>
+                      <span style="fontSize:15px">{{ s.label }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+
+            <div style="border:3px solid #4b3b6b; borderRadius:14px; overflow:hidden; background:#fffaee; boxShadow:5px 5px 0 rgba(75,59,107,.18)">
+              <div style="padding:8px 14px; borderBottom:3px solid #4b3b6b; background:#fbe6a2; display:flex; justifyContent:space-between; alignItems:center">
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:11px">ACTIVITY_3</span>
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#8a7132">DRAW</span>
+              </div>
+              <div style="padding:18px 20px 20px; display:flex; flexDirection:column; gap:10px">
+                <div style="display:flex; alignItems:center; gap:10px">
+                  <div style="width:30px; height:30px; border:3px solid #4b3b6b; borderRadius:8px; background:#fbe6a2; display:flex; alignItems:center; justifyContent:center; fontFamily:'Silkscreen',monospace; fontSize:12px">3</div>
+                  <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:20px">명함에 넣을 그림 자리</div>
+                </div>
+                <div style="height:150px; border:3px dashed #b3a8cc; borderRadius:10px; background:repeating-linear-gradient(45deg,#fffdf7,#fffdf7 10px,#f8f1e2 10px,#f8f1e2 20px); display:flex; alignItems:center; justifyContent:center; fontFamily:'Silkscreen',monospace; fontSize:11px; color:#9c8dc4">DRAWING / IMAGE DROP HERE</div>
+              </div>
+            </div>
+
+            <div style="border:3px solid #4b3b6b; borderRadius:14px; overflow:hidden; background:#f8f4fe; boxShadow:5px 5px 0 rgba(75,59,107,.18)">
+              <div style="padding:8px 14px; borderBottom:3px solid #4b3b6b; background:#d6c4f5; display:flex; justifyContent:space-between; alignItems:center">
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:11px">ACTIVITY_4</span>
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#6b559b">REFLECT</span>
+              </div>
+              <div style="padding:18px 20px 20px; display:flex; flexDirection:column; gap:10px">
+                <div style="display:flex; alignItems:center; gap:10px">
+                  <div style="width:30px; height:30px; border:3px solid #4b3b6b; borderRadius:8px; background:#d6c4f5; display:flex; alignItems:center; justifyContent:center; fontFamily:'Silkscreen',monospace; fontSize:12px">4</div>
+                  <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:20px">수업 소감 한 줄</div>
+                </div>
+                <textarea placeholder="오늘 배운 것, 어려웠던 점을 적어요" value="{{ reflect }}" onChange="{{ setReflect }}" style="minHeight:76px; resize:vertical; padding:13px; border:3px solid #4b3b6b; borderRadius:10px; background:#fff; fontSize:15px; lineHeight:1.7; outline:none"></textarea>
+              </div>
+            </div>
+
+            <div style="border:3px solid #4b3b6b; borderRadius:14px; overflow:hidden; background:#f1fbf7; boxShadow:5px 5px 0 rgba(75,59,107,.18)">
+              <div style="padding:8px 14px; borderBottom:3px solid #4b3b6b; background:#bfe9dd; display:flex; justifyContent:space-between; alignItems:center">
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:11px">ACTIVITY_5</span>
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#3d7f6c">SUBMIT</span>
+              </div>
+              <div style="padding:18px 20px 20px; display:flex; flexDirection:column; gap:10px">
+                <div style="display:flex; alignItems:center; gap:10px">
+                  <div style="width:30px; height:30px; border:3px solid #4b3b6b; borderRadius:8px; background:#bfe9dd; display:flex; alignItems:center; justifyContent:center; fontFamily:'Silkscreen',monospace; fontSize:12px">5</div>
+                  <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:20px">활동지 제출하기</div>
+                </div>
+                <div style="fontSize:14px; color:#8b7cb8">이름과 활동 내용을 다시 확인한 뒤 제출해요.</div>
+                <div style="fontSize:14px; color:#8b7cb8">아래 6·7번 활동까지 마치면 오늘 수업이 끝나요.</div>
+                <div style="display:flex; alignItems:center; gap:12px; flexWrap:wrap; marginTop:2px">
+                  <div onClick="{{ save }}" style="cursor:pointer; padding:12px 24px; border:3px solid #4b3b6b; borderRadius:10px; background:#9db2f2; color:#26224a; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:18px; boxShadow:4px 4px 0 rgba(75,59,107,.3)" style-active="cursor:pointer; padding:12px 24px; border:3px solid #4b3b6b; borderRadius:10px; background:#8296e0; color:#26224a; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:18px; boxShadow:1px 1px 0 rgba(75,59,107,.3); transform:translate(3px,3px)">💾 제출하기</div>
+                  <div onClick="{{ reset }}" style="cursor:pointer; padding:12px 20px; border:3px solid #4b3b6b; borderRadius:10px; background:#fffdf7; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:17px; boxShadow:4px 4px 0 rgba(75,59,107,.2)">다시 쓰기</div>
+                  <sc-if value="{{ saved }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex; alignItems:center; gap:8px; padding:9px 14px; border:3px solid #4b3b6b; borderRadius:10px; background:#fffdf7; fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:13px">SAVED! {{ savedName }} 님 활동지 제출 완료 ♥</div>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+
+            <div style="border:3px solid #4b3b6b; borderRadius:14px; overflow:hidden; background:#fdf2fc; boxShadow:5px 5px 0 rgba(75,59,107,.18)">
+              <div style="padding:8px 14px; borderBottom:3px solid #4b3b6b; background:#eec6ea; display:flex; justifyContent:space-between; alignItems:center">
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:11px">ACTIVITY_6</span>
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#7b3f74">SHARE</span>
+              </div>
+              <div style="padding:18px 20px 20px; display:flex; flexDirection:column; gap:12px">
+                <div style="display:flex; alignItems:center; gap:10px">
+                  <div style="width:30px; height:30px; border:3px solid #4b3b6b; borderRadius:8px; background:#eec6ea; display:flex; alignItems:center; justifyContent:center; fontFamily:'Silkscreen',monospace; fontSize:12px">6</div>
+                  <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:20px">친구 명함 감상하고 사인 받기</div>
+                </div>
+                <div style="fontSize:14px; color:#8b7cb8">세 명에게 소개하고, 친구 이름과 한 줄 칭찬을 받아요.</div>
+                <div style="display:grid; gridTemplateColumns:repeat(auto-fit, minmax(200px,1fr)); gap:12px">
+                  <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#fffdf7; padding:12px 14px; display:flex; flexDirection:column; gap:10px">
+                    <div style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#9c8dc4">FRIEND_01</div>
+                    <div style="borderBottom:2px dashed rgba(75,59,107,.4); height:24px"></div>
+                    <div style="borderBottom:2px dashed rgba(75,59,107,.4); height:24px"></div>
+                  </div>
+                  <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#fffdf7; padding:12px 14px; display:flex; flexDirection:column; gap:10px">
+                    <div style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#9c8dc4">FRIEND_02</div>
+                    <div style="borderBottom:2px dashed rgba(75,59,107,.4); height:24px"></div>
+                    <div style="borderBottom:2px dashed rgba(75,59,107,.4); height:24px"></div>
+                  </div>
+                  <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#fffdf7; padding:12px 14px; display:flex; flexDirection:column; gap:10px">
+                    <div style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#9c8dc4">FRIEND_03</div>
+                    <div style="borderBottom:2px dashed rgba(75,59,107,.4); height:24px"></div>
+                    <div style="borderBottom:2px dashed rgba(75,59,107,.4); height:24px"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="border:3px solid #4b3b6b; borderRadius:14px; overflow:hidden; background:#fdf3f0; boxShadow:5px 5px 0 rgba(75,59,107,.18)">
+              <div style="padding:8px 14px; borderBottom:3px solid #4b3b6b; background:#f7bfb2; display:flex; justifyContent:space-between; alignItems:center">
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:11px">ACTIVITY_7</span>
+                <span style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#8a4a3c">NEXT</span>
+              </div>
+              <div style="padding:18px 20px 20px; display:flex; flexDirection:column; gap:12px">
+                <div style="display:flex; alignItems:center; gap:10px">
+                  <div style="width:30px; height:30px; border:3px solid #4b3b6b; borderRadius:8px; background:#f7bfb2; display:flex; alignItems:center; justifyContent:center; fontFamily:'Silkscreen',monospace; fontSize:12px">7</div>
+                  <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:20px">다음 시간 준비하기</div>
+                </div>
+                <div style="display:flex; flexDirection:column; gap:8px; fontSize:15px; lineHeight:1.7">
+                  <div style="padding:11px 13px; border:3px solid #4b3b6b; borderRadius:10px; background:#fffdf7">📁 오늘 만든 명함 파일을 내 폴더에 저장하기</div>
+                  <div style="padding:11px 13px; border:3px solid #4b3b6b; borderRadius:10px; background:#fffdf7">🖨️ 다음 시간에 인쇄할 친구 세 명 정하기</div>
+                  <div style="padding:11px 13px; border:3px solid #4b3b6b; borderRadius:10px; background:#fffdf7">🎒 준비물 — 색연필, 가위, 우리 반 사진 1장</div>
+                </div>
+                <div style="fontSize:14px; color:#8b7cb8">다음 주제 — 학교 소개 카드뉴스 만들기</div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+
+    <div style="display:flex; alignItems:center; justifyContent:center; gap:8px; paddingTop:4px">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="#6b7fa8" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.07-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg>
+      <span style="fontFamily:'Maplestory',sans-serif; fontWeight:300; fontSize:14px; color:#6b7fa8">@sage810</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#f7a8c4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#f7a8c4&quot;,&quot;#c4d8f7&quot;,&quot;#d6c4f5&quot;,&quot;#bfe9dd&quot;]}}">
+const SUBJECTS = ['국어','수학','영어','과학','사회','역사','도덕','기술가정','정보','체육','음악','미술','한문','진로','보건','자율','창체'];
+const SUB_COLOR = {
+  국어:'#f9cade', 수학:'#c4d8f7', 영어:'#fbe6a2', 과학:'#bfe9dd', 사회:'#e8d9b8',
+  역사:'#f7bfb2', 도덕:'#eec6ea', 기술가정:'#d8f0c4', 정보:'#a9dce4', 체육:'#c9e8b8',
+  음악:'#d6c4f5', 미술:'#ffe0cc', 한문:'#cfeaf5', 진로:'#9db2f2', 보건:'#f5b7c8',
+  자율:'#e3e0b0', 창체:'#c9c2ea'
+};
+const ROOMS = { 음악:'음악실', 미술:'미술실', 체육:'체육관', 과학:'과학실', 기술가정:'실습실', 정보:'컴퓨터실', 보건:'보건실' };
+const TEACHERS = ['김하늘','박지우','이서연','최민준','정다온','한별','오유진'];
+const PERIODS = [['1교시','09:00','1ST','09:45'],['2교시','09:55','2ND','10:40'],['3교시','10:50','3RD','11:35'],['4교시','11:45','4TH','12:35'],['5교시','13:35','5TH','14:20'],['6교시','14:30','6TH','15:15'],['7교시','15:25','7TH','16:10']];
+const DAYS = ['월','화','수','목','금'];
+const MEAL_SETS = [
+  { items:['기장밥','미역국','돈육간장구이','콩나물무침','깍두기'], kcal:682, icon:'🍚' },
+  { items:['카레라이스','유부장국','치킨텐더','오이생채','배추김치'], kcal:735, icon:'🍛' },
+  { items:['찹쌀밥','순두부찌개','고등어구이','시금치나물','포기김치'], kcal:648, icon:'🐟' },
+  { items:['볶음밥','계란국','만두튀김','단무지','요구르트'], kcal:711, icon:'🥟' },
+  { items:['잡곡밥','된장찌개','제육볶음','도토리묵','깍두기'], kcal:756, icon:'🥘' },
+  { items:['비빔밥','콩나물국','메추리알조림','과일샐러드','김치'], kcal:669, icon:'🥗' },
+  { items:['백미밥','떡국','생선까스','브로콜리무침','배추김치'], kcal:698, icon:'🍜' },
+  { items:['크림스파게티','옥수수스프','마늘빵','토마토샐러드','피클'], kcal:724, icon:'🍝' }
+];
+const TAGS = ['주식','국물','주찬','부찬','김치'];
+const ALLERGENS = [
+  null,
+  { n: 1, name: '난류', color: '#ff4d6d' }, { n: 2, name: '우유', color: '#ff7a1a' },
+  { n: 3, name: '메밀', color: '#ffb800' }, { n: 4, name: '땅콩', color: '#e8d000' },
+  { n: 5, name: '대두', color: '#9ed900' }, { n: 6, name: '밀', color: '#2fc744' },
+  { n: 7, name: '고등어', color: '#00c9a7' }, { n: 8, name: '게', color: '#00bcd4' },
+  { n: 9, name: '새우', color: '#0091ff' }, { n: 10, name: '돼지고기', color: '#3d5afe' },
+  { n: 11, name: '복숭아', color: '#7c4dff' }, { n: 12, name: '토마토', color: '#b429ff' },
+  { n: 13, name: '아황산류', color: '#e040fb' }, { n: 14, name: '호두', color: '#ff2d95' },
+  { n: 15, name: '닭고기', color: '#ff5252' }, { n: 16, name: '소고기', color: '#c1440e' },
+  { n: 17, name: '오징어', color: '#00867d' }, { n: 18, name: '조개류', color: '#5d6dff' },
+  { n: 19, name: '잣', color: '#8d6e00' }
+];
+const DISH_ALLERGY = [
+  ['미역국', [5, 6]], ['돈육', [5, 6, 10]], ['제육', [5, 6, 10]], ['콩나물', [5]],
+  ['김치', [13]], ['깍두기', [13]], ['카레', [2, 5, 6, 10]], ['유부', [5, 6]],
+  ['치킨', [1, 5, 6, 15]], ['생채', [13]], ['순두부', [5]], ['고등어', [7, 13]],
+  ['볶음밥', [1, 5, 6]], ['계란', [1]], ['만두', [1, 5, 6, 10]], ['단무지', [13]],
+  ['요구르트', [2]], ['된장', [5, 6]], ['도토리묵', [6]], ['비빔밥', [1, 5, 6]],
+  ['메추리알', [1, 5, 6]], ['과일샐러드', [2, 11, 12]], ['떡국', [1, 5, 6, 16]],
+  ['까스', [1, 5, 6, 17]], ['스파게티', [2, 5, 6]], ['스프', [2, 5, 6]],
+  ['마늘빵', [2, 5, 6]], ['토마토', [1, 12]], ['피클', [13]]
+];
+function allergyOf(name) {
+  const hit = DISH_ALLERGY.find(([k]) => name.indexOf(k) >= 0);
+  return (hit ? hit[1] : []).map(n => ALLERGENS[n]);
+}
+const ALLERGY = ['5.우유 6.대두','1.난류 5.우유','4.고등어 13.땅콩','1.난류 6.대두','10.돼지고기'];
+
+class Component extends DCLogic {
+  state = {
+    tab: 'rules', timeView: 'day', mealView: 'day',
+    grade: 3, cls: 2, dayIdx: 2,
+    fGrade: '', fClass: '', fNum: '', fName: '',
+    a1: '', reflect: '', checks: [false, false, false, false],
+    saved: false, savedName: ''
+  };
+
+  componentDidMount() {
+    this._tick = setInterval(() => this.setState({ now: new Date() }), 60000);
+  }
+  componentWillUnmount() { clearInterval(this._tick); }
+
+  nowMin() {
+    const n = this.state.now || new Date();
+    return n.getHours() * 60 + n.getMinutes();
+  }
+
+  isPast(endStr) {
+    const [h, m] = endStr.split(':').map(Number);
+    return this.nowMin() > h * 60 + m;
+  }
+
+  chip(active, pal) {
+    const bg = active ? (pal || '#f7a8c4') : '#fffdf7';
+    return 'cursor:pointer; padding:8px 15px; border:3px solid #4b3b6b; borderRadius:9px; background:' + bg +
+      '; fontFamily:\'CookieRun\', sans-serif; fontWeight:700; fontSize:15px; boxShadow:' + (active ? '2px 2px 0 rgba(75,59,107,.35)' : '3px 3px 0 rgba(75,59,107,.15)') +
+      '; transform:' + (active ? 'translate(1px,1px)' : 'none');
+  }
+
+  tabStyle(active, color, cap) {
+    return "cursor:pointer; padding:" + (active ? '9px 16px 8px' : '6px 15px 5px') +
+      "; marginTop:" + (active ? '0' : '3px') +
+      "; borderTop:3px solid #4b3b6b; borderLeft:3px solid #4b3b6b; borderRight:3px solid #4b3b6b; borderBottom:" + (active ? 'none' : '3px solid #4b3b6b') + "; borderRadius:12px 12px 0 0; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px; whiteSpace:nowrap; display:flex; alignItems:center; gap:6px; marginBottom:-4px; background:" +
+      (active ? '#fffdf7' : color) +
+      '; color:' + (active ? '#4b3b6b' : '#6b5b93') +
+      '; boxShadow:' + (active ? 'inset 0 5px 0 ' + cap + ', 0 -3px 8px rgba(75,59,107,.14)' : 'inset 0 -7px 10px rgba(75,59,107,.09)') +
+      '; zIndex:' + (active ? 2 : 1);
+  }
+
+  subjectAt(d, p) {
+    const s = this.state;
+    const i = (s.grade * 31 + s.cls * 13 + d * 7 + p * 5 + p * d) % SUBJECTS.length;
+    return SUBJECTS[i];
+  }
+
+  mealFor(n) { return MEAL_SETS[Math.abs(n) % MEAL_SETS.length]; }
+
+  monthGrid(fn) {
+    const first = new Date(2026, 8, 1);
+    const pad = first.getDay();
+    const total = 30;
+    const out = [];
+    for (let i = 0; i < 35; i++) {
+      const day = i - pad + 1;
+      const inMonth = day >= 1 && day <= total;
+      const dow = i % 7;
+      const weekend = dow === 0 || dow === 6;
+      const today = day === 2;
+      const boxStyle = 'minHeight:120px; padding:7px 8px; display:flex; flexDirection:column; gap:5px; borderRight:2px dashed rgba(75,59,107,.22); borderBottom:2px dashed rgba(75,59,107,.22); position:relative; background:' +
+        (!inMonth ? '#f1edf9' : today ? '#fdeaf3' : weekend ? '#f7f4fd' : '#fffdf7') +
+        (today ? '; boxShadow:inset 0 0 0 4px #ee9dbf' : '');
+      const dayStyle = today
+        ? "fontFamily:'Silkscreen',monospace; fontSize:11px; background:#ee9dbf; color:#fffdf7; border:2px solid #4b3b6b; borderRadius:20px; padding:2px 8px"
+        : "fontFamily:'Silkscreen',monospace; fontSize:11px";
+      out.push(Object.assign({ day: inMonth ? String(day) : '', boxStyle, dayStyle, todayMark: today ? '오늘' : '' }, inMonth && !weekend ? fn(day, dow) : { chips: [], badge: '', main: weekend && inMonth ? '휴무' : '', icon: '' }));
+    }
+    return out;
+  }
+
+  renderVals() {
+    const s = this.state;
+    const set = (k) => (e) => this.setState({ [k]: e.target.value });
+    const accent = this.props.accent ?? '#f7a8c4';
+
+    const CLASS_MAX = { 1: 9, 2: 11, 3: 12 };
+    const gradeOpts = [1, 2, 3].map(g => ({ value: String(g), label: g + '학년' }));
+    const classCount = CLASS_MAX[s.grade] || 12;
+    const classOpts = Array.from({ length: classCount }, (_, i) => ({ value: String(i + 1), label: (i + 1) + '반' }));
+
+    const nowDate = s.now || new Date();
+    const monday = new Date(nowDate);
+    monday.setDate(nowDate.getDate() - ((nowDate.getDay() + 6) % 7));
+    const weekDates = DAYS.map((_, i) => {
+      const d = new Date(monday);
+      d.setDate(monday.getDate() + i);
+      return (d.getMonth() + 1) + '월 ' + d.getDate() + '일';
+    });
+    const todayDow = (nowDate.getDay() + 6) % 7;
+    const mkViews = (cur, key, pal) => [['day', '일간'], ['week', '주간'], ['month', '월간']].map(([v, l]) => ({
+      label: l, style: this.chip(cur === v, pal), pick: () => this.setState({ [key]: v })
+    }));
+
+    const dayRows = PERIODS.map((p, i) => {
+      const sub = this.subjectAt(2, i);
+      const past = this.isPast(p[3]);
+      const [ph, pm] = p[1].split(':').map(Number);
+      const [eh, em] = p[3].split(':').map(Number);
+      const start = ph * 60 + pm;
+      const end = eh * 60 + em;
+      const nowM = this.nowMin();
+      const live = nowM >= start && nowM <= end;
+      const tagBase = "borderRadius:999px; padding:4px 12px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:12px; letterSpacing:.5px; whiteSpace:nowrap; ";
+      return {
+        statusLabel: past ? '완료' : live ? '진행 중' : '예정',
+        statusStyle: tagBase + (past
+          ? 'background:#ece9f3; color:#8a82a6'
+          : live
+            ? 'background:#7b5cd6; color:#fffdf7; boxShadow:0 2px 6px rgba(123,92,214,.35)'
+            : 'background:#fffdf7; color:#7b6ba8; border:2px dashed #cfc6e6; padding:2px 10px'),
+        tagStyle: "border:2px solid #4b3b6b; borderRadius:8px; padding:4px 12px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:17px; whiteSpace:nowrap; background:" + SUB_COLOR[sub],
+        rowStyle: 'display:grid; gridTemplateColumns:88px 1fr; borderBottom:2px dashed rgba(75,59,107,.22); background:' + (live ? '#f6f2ff' : '#fffdf7') + (past ? '; opacity:.45; filter:saturate(.4)' : ''),
+        period: p[0], periodEn: p[2] + ' · ' + p[0], time: p[1], endTime: p[3], subject: sub,
+        room: ROOMS[sub] || (s.grade + '-' + s.cls + ' 교실'),
+        teacher: TEACHERS[(s.grade + s.cls + i) % TEACHERS.length] + ' 선생님',
+        color: SUB_COLOR[sub]
+      };
+    });
+
+    const TODAY_D = todayDow <= 4 ? todayDow : -1;
+    const weekRows = PERIODS.map((p, i) => ({
+      period: p[0], time: p[1], endTime: p[3],
+      cells: DAYS.map((_, d) => {
+        const sub = this.subjectAt(d, i);
+        const t = d === TODAY_D;
+        const past = t && this.isPast(p[3]);
+        return {
+          subject: sub,
+          cellStyle: 'padding:8px 6px; borderRight:2px dashed rgba(75,59,107,.25); display:flex; alignItems:center; justifyContent:center' + (t ? '; background:rgba(123,92,214,.06)' : '') + (past ? '; opacity:.4; filter:saturate(.35)' : ''),
+          style: 'width:100%; textAlign:center; padding:9px 4px; border:3px solid #4b3b6b; borderRadius:9px; background:' + SUB_COLOR[sub] + "; fontFamily:'CookieRun', sans-serif; fontWeight:700; fontSize:16px"
+        };
+      })
+    }));
+    const weekHeads = DAYS.map((d, i) => ({
+      label: d + '요일',
+      date: weekDates[i],
+      style: "padding:8px 8px 9px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:16px; textAlign:center; borderRight:2px dashed rgba(75,59,107,.35)" + (i === TODAY_D ? "; background:rgba(123,92,214,.12)" : ""),
+      dateStyle: "fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:12px; color:#5a4a86; marginTop:3px"
+    }));
+
+    const monthCells = this.monthGrid((day, dow) => ({
+      badge: '',
+      chips: PERIODS.map((p, k) => {
+        const sub = this.subjectAt((dow + 6) % 5, k);
+        return {
+          label: (k + 1) + '교시',
+          sub,
+          style: 'display:flex; alignItems:center; gap:4px; fontSize:10px; color:#7b6ba8',
+          subStyle: 'border:1px solid #4b3b6b; borderRadius:4px; padding:0 4px; fontSize:10px; color:#4b3b6b; background:' + SUB_COLOR[sub]
+        };
+      })
+    }));
+
+    const todaySet = this.mealFor(2);
+    const todayMeal = {
+      date: '2026.09.02 WED', kcal: todaySet.kcal, allergy: ALLERGY[2],
+      items: todaySet.items.map((n, i) => ({
+        name: n, tag: TAGS[i] || '',
+        icon: i === 0 ? todaySet.icon : ['🥣', '🍗', '🥬', '🥕'][i - 1] || '🍽',
+        allergens: allergyOf(n).map(a => ({
+          label: a.n + '.' + a.name,
+          style: 'borderRadius:6px; padding:2px 7px; fontFamily:\'CookieRun\',sans-serif; fontWeight:700; fontSize:11px; whiteSpace:nowrap; color:#fff; background:' + a.color
+        }))
+      }))
+    };
+    const weekColors = ['#f9cade', '#c4d8f7', '#bfe9dd', '#fbe6a2', '#d6c4f5'];
+    const weekMeals = DAYS.map((d, i) => {
+      const m = this.mealFor(i);
+      return { day: d + '요일', date: '09.0' + (i + 1), items: m.items, kcal: m.kcal, color: weekColors[i] };
+    });
+    const mealMonthCells = this.monthGrid((day) => {
+      const m = this.mealFor(day);
+      return { icon: m.icon, main: '', menu: m.items, chips: [] };
+    });
+
+    const stepLabels = ['짝과 낱말 나누기', '그림 도구로 명함 꾸미기', '명함 파일 저장하기', '모둠 앞에서 소개하기'];
+    const steps = stepLabels.map((l, i) => ({
+      label: l, mark: s.checks[i] ? '✓' : '',
+      style: 'cursor:pointer; display:flex; alignItems:center; gap:11px; padding:11px 13px; border:3px solid #4b3b6b; borderRadius:10px; background:' + (s.checks[i] ? '#eaf8f2' : '#fdf6fa'),
+      boxStyle: 'width:24px; height:24px; flex:none; border:3px solid #4b3b6b; borderRadius:6px; display:flex; alignItems:center; justifyContent:center; fontSize:14px; background:' + (s.checks[i] ? '#bfe9dd' : '#fff'),
+      toggle: () => this.setState(st => { const c = st.checks.slice(); c[i] = !c[i]; return { checks: c }; })
+    }));
+
+    return {
+      isRules: s.tab === 'rules', isTime: s.tab === 'time', isMeal: s.tab === 'meal', isSheet: s.tab === 'sheet',
+      goRules: () => this.setState({ tab: 'rules' }), goTime: () => this.setState({ tab: 'time' }),
+      goMeal: () => this.setState({ tab: 'meal' }), goSheet: () => this.setState({ tab: 'sheet' }),
+      tabRules: this.tabStyle(s.tab === 'rules', '#fbe6a2', '#f0c95c'),
+      tabTime: this.tabStyle(s.tab === 'time', '#c4d8f7', '#7fa9e8'),
+      tabMeal: this.tabStyle(s.tab === 'meal', '#bfe9dd', '#6fc9b0'),
+      tabSheet: this.tabStyle(s.tab === 'sheet', '#f9cade', '#ee9dbf'),
+      gradeOpts, classOpts, gradeVal: String(s.grade), classVal: String(s.cls),
+      setGrade: (e) => {
+        const g = Number(e.target.value);
+        const max = ({ 1: 9, 2: 11, 3: 12 })[g] || 12;
+        this.setState({ grade: g, cls: Math.min(this.state.cls, max) });
+      },
+      setCls: (e) => this.setState({ cls: Number(e.target.value) }),
+      timeViews: mkViews(s.timeView, 'timeView', accent), mealViews: mkViews(s.mealView, 'mealView', '#bfe9dd'),
+      timeIsDay: s.timeView === 'day', timeIsWeek: s.timeView === 'week', timeIsMonth: s.timeView === 'month',
+      mealIsDay: s.mealView === 'day', mealIsWeek: s.mealView === 'week', mealIsMonth: s.mealView === 'month',
+      timeCaption: s.grade + '학년 ' + s.cls + '반 · 2026학년도 2학기',
+      mealCaption: '별빛초 급식실 · 2026년 9월',
+      todayLabel: (() => {
+        const n = s.now || new Date();
+        return n.getFullYear() + '년 ' + (n.getMonth() + 1) + '월 ' + n.getDate() + '일 (' + ['일', '월', '화', '수', '목', '금', '토'][n.getDay()] + ')';
+      })(),
+      dayRows, weekRows, weekHeads, monthCells,
+      dowHeads: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
+      todayMeal, weekMeals, mealMonthCells,
+      fGrade: s.fGrade, fClass: s.fClass, fNum: s.fNum, fName: s.fName, a1: s.a1, reflect: s.reflect,
+      setFGrade: set('fGrade'), setFClass: set('fClass'), setFNum: set('fNum'), setFName: set('fName'),
+      setA1: set('a1'), setReflect: set('reflect'),
+      steps, saved: s.saved, savedName: s.savedName || '이름 없는 친구',
+      save: () => this.setState({ saved: true, savedName: s.fName }),
+      reset: () => this.setState({ fGrade: '', fClass: '', fNum: '', fName: '', a1: '', reflect: '', checks: [false, false, false, false], saved: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  @font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Regular.ttf') format('truetype'); font-weight: 400; }
+  @font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Bold.ttf') format('truetype'); font-weight: 700; }
+  @font-face { font-family: 'CookieRun'; src: url('fonts/CookieRun-Black.ttf') format('truetype'); font-weight: 900; }
+  @font-face { font-family: 'Maplestory'; src: url('fonts/Maplestory-Light.ttf') format('truetype'); font-weight: 300; }
+  @font-face { font-family: 'Maplestory'; src: url('fonts/Maplestory-Bold.ttf') format('truetype'); font-weight: 700; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: #4b3b6b; }
+  a { color: #c96a97; } a:hover { color: #8f6fd6; }
+</style>
+</helmet>
+<div style="minHeight:100vh; padding:32px 24px 60px; background:#e7e3f7; backgroundImage:linear-gradient(#d8d2ee 1px, transparent 1px), linear-gradient(90deg, #d8d2ee 1px, transparent 1px); backgroundSize:28px 28px">
+  <div style="maxWidth:980px; margin:0 auto; display:flex; flexDirection:column; gap:22px">
+
+    <div style="display:flex; alignItems:center; gap:12px; flexWrap:wrap">
+      <div style="fontFamily:'Silkscreen',monospace; fontSize:13px; background:#fffdf7; border:3px solid #4b3b6b; borderRadius:8px; padding:6px 12px; boxShadow:4px 4px 0 rgba(75,59,107,.2)">FONT_PREVIEW.EXE</div>
+      <div style="fontFamily:'Gowun Dodum',sans-serif; fontSize:14px; color:#7d6bb0">쿠키런 · 메이플스토리 서체를 학교 웹앱 UI에 적용한 미리보기</div>
+    </div>
+
+    <div style="border:4px solid #4b3b6b; borderRadius:16px; overflow:hidden; background:#fffdf7; boxShadow:8px 8px 0 rgba(75,59,107,.22)">
+      <div style="padding:10px 16px; borderBottom:4px solid #4b3b6b; background:linear-gradient(90deg,#f9cade,#d6c4f5); fontFamily:'Silkscreen',monospace; fontSize:11px">OPTION_A — CookieRun (제목 Black / 본문 Regular)</div>
+      <div style="padding:22px; display:flex; flexDirection:column; gap:16px">
+        <div style="fontFamily:'CookieRun',sans-serif; fontWeight:900; fontSize:34px">신현중학교 알림창</div>
+        <div style="display:flex; gap:6px; flexWrap:wrap">
+          <div style="border:3px solid #4b3b6b; borderRadius:11px; borderBottom:none; background:#fffdf7; padding:8px 15px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px; boxShadow:inset 0 5px 0 #f0c95c">📜 이용 규칙</div>
+          <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#c4d8f7; padding:8px 15px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px">🕒 시간표</div>
+          <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#bfe9dd; padding:8px 15px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px">🍚 오늘의 급식</div>
+          <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#f9cade; padding:8px 15px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px">✏️ 수업 활동지</div>
+        </div>
+        <div style="display:grid; gridTemplateColumns:10px 84px 1fr; border:3px solid #4b3b6b; borderRadius:12px; overflow:hidden; boxShadow:4px 4px 0 rgba(75,59,107,.16)">
+          <div style="background:#a9dce4"></div>
+          <div style="padding:11px 6px; textAlign:center; borderRight:2px dashed rgba(75,59,107,.3)">
+            <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:15px">6교시</div>
+            <div style="fontFamily:'Silkscreen',monospace; fontSize:8px; color:#8b7cb8">14:10</div>
+          </div>
+          <div style="padding:11px 15px; display:flex; alignItems:center; gap:10px">
+            <div style="border:2px solid #4b3b6b; borderRadius:8px; background:#e3e0b0; padding:4px 12px; fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:16px">자율 자치 활동</div>
+            <div style="border:2px solid #4b3b6b; borderRadius:6px; background:#d8f0c4; padding:3px 9px; fontFamily:'CookieRun',sans-serif; fontSize:12px">진행 중</div>
+          </div>
+        </div>
+        <div style="fontFamily:'CookieRun',sans-serif; fontSize:15px; lineHeight:1.8">본문 예시 — 오늘의 주제는 우리 학교를 소개하는 디지털 명함 만들기예요. 낱말 세 개를 떠올려 적고, 그림 도구로 꾸며 봅니다. 1234567890 kcal</div>
+      </div>
+    </div>
+
+    <div style="border:4px solid #4b3b6b; borderRadius:16px; overflow:hidden; background:#fffdf7; boxShadow:8px 8px 0 rgba(75,59,107,.22)">
+      <div style="padding:10px 16px; borderBottom:4px solid #4b3b6b; background:linear-gradient(90deg,#c4d8f7,#bfe9dd); fontFamily:'Silkscreen',monospace; fontSize:11px">OPTION_B — Maplestory (제목 Bold / 본문 Light)</div>
+      <div style="padding:22px; display:flex; flexDirection:column; gap:16px">
+        <div style="fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:34px">신현중학교 알림창</div>
+        <div style="display:flex; gap:6px; flexWrap:wrap">
+          <div style="border:3px solid #4b3b6b; borderRadius:11px; borderBottom:none; background:#fffdf7; padding:8px 15px; fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:15px; boxShadow:inset 0 5px 0 #f0c95c">📜 이용 규칙</div>
+          <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#c4d8f7; padding:8px 15px; fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:15px">🕒 시간표</div>
+          <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#bfe9dd; padding:8px 15px; fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:15px">🍚 오늘의 급식</div>
+          <div style="border:3px solid #4b3b6b; borderRadius:11px; background:#f9cade; padding:8px 15px; fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:15px">✏️ 수업 활동지</div>
+        </div>
+        <div style="display:grid; gridTemplateColumns:10px 84px 1fr; border:3px solid #4b3b6b; borderRadius:12px; overflow:hidden; boxShadow:4px 4px 0 rgba(75,59,107,.16)">
+          <div style="background:#f7bfb2"></div>
+          <div style="padding:11px 6px; textAlign:center; borderRight:2px dashed rgba(75,59,107,.3)">
+            <div style="fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:15px">6교시</div>
+            <div style="fontFamily:'Silkscreen',monospace; fontSize:8px; color:#8b7cb8">14:10</div>
+          </div>
+          <div style="padding:11px 15px; display:flex; alignItems:center; gap:10px">
+            <div style="border:2px solid #4b3b6b; borderRadius:8px; background:#e3e0b0; padding:4px 12px; fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:16px">자율 자치 활동</div>
+            <div style="border:2px solid #4b3b6b; borderRadius:6px; background:#d8f0c4; padding:3px 9px; fontFamily:'Maplestory',sans-serif; fontSize:12px">진행 중</div>
+          </div>
+        </div>
+        <div style="fontFamily:'Maplestory',sans-serif; fontWeight:300; fontSize:15px; lineHeight:1.8">본문 예시 — 오늘의 주제는 우리 학교를 소개하는 디지털 명함 만들기예요. 낱말 세 개를 떠올려 적고, 그림 도구로 꾸며 봅니다. 1234567890 kcal</div>
+      </div>
+    </div>
+
+    <div style="border:4px solid #4b3b6b; borderRadius:16px; overflow:hidden; background:#fffdf7; boxShadow:8px 8px 0 rgba(75,59,107,.22)">
+      <div style="padding:10px 16px; borderBottom:4px solid #4b3b6b; background:linear-gradient(90deg,#eec6ea,#ffe0cc); fontFamily:'Silkscreen',monospace; fontSize:11px">OPTION_C — 혼합 (제목 CookieRun Black / 본문 Maplestory Light)</div>
+      <div style="padding:22px; display:flex; flexDirection:column; gap:16px">
+        <div style="fontFamily:'CookieRun',sans-serif; fontWeight:900; fontSize:34px">신현중학교 알림창</div>
+        <div style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:22px">오늘의 급식 · 2026년 9월 2일 (수)</div>
+        <div style="display:flex; flexDirection:column; gap:8px; maxWidth:520px">
+          <div style="display:flex; alignItems:center; justifyContent:center; gap:10px; border:3px solid #4b3b6b; borderRadius:10px; background:#fdf6fa; padding:10px 12px">
+            <span style="fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:18px">고등어구이</span>
+            <span style="borderRadius:6px; padding:2px 7px; fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:11px; color:#fff; background:#00c9a7">7.고등어</span>
+            <span style="borderRadius:6px; padding:2px 7px; fontFamily:'Maplestory',sans-serif; fontWeight:700; fontSize:11px; color:#fff; background:#e040fb">13.아황산류</span>
+          </div>
+          <div style="display:flex; alignItems:center; justifyContent:center; gap:10px; border:3px solid #4b3b6b; borderRadius:10px; background:#bfe9dd; padding:11px 14px">
+            <span style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#3d7f6c">TOTAL</span>
+            <span style="fontFamily:'CookieRun',sans-serif; fontWeight:700; fontSize:17px">오늘 전체 칼로리</span>
+            <span style="fontFamily:'CookieRun',sans-serif; fontWeight:900; fontSize:20px">648 kcal</span>
+          </div>
+        </div>
+        <div style="fontFamily:'Maplestory',sans-serif; fontWeight:300; fontSize:15px; lineHeight:1.85">본문 예시 — 제목은 두툼한 쿠키런, 본문은 가벼운 메이플스토리로 두면 글자 크기 차이가 또렷해져서 정보 위계가 잘 잡힙니다. 숫자와 시간 표기(09:00, 14:10)도 안정적으로 읽힙니다.</div>
+      </div>
+    </div>
+
+    <div style="display:flex; flexDirection:column; gap:10px; border:3px solid #4b3b6b; borderRadius:14px; background:#fbe6a2; padding:16px 18px; boxShadow:5px 5px 0 rgba(75,59,107,.18)">
+      <div style="fontFamily:'Silkscreen',monospace; fontSize:10px; color:#8a7132">NOTE</div>
+      <div style="fontFamily:'Gowun Dodum',sans-serif; fontSize:15px; lineHeight:1.7">세 안 중 마음에 드는 걸 알려주시면 학교 웹앱 전체에 적용하겠습니다. 라벨용 픽셀 영문(Silkscreen)은 그대로 두는 편이 레트로 창 느낌 유지에 좋습니다.</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

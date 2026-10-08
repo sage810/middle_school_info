@@ -1,0 +1,9 @@
+{
+  "unit": "data-analysis",
+  "unitTitle": "데이터분석",
+  "no": "01",
+  "title": "디지털 데이터",
+  "shell": "portal",
+  "status": "live",
+  "copiedFrom": "data-analysis/06"
+}

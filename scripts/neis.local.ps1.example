@@ -1,0 +1,6 @@
+# 이 파일을 같은 폴더에 neis.local.ps1 로 복사한 뒤 실제 인증키를 채운다.
+# neis.local.ps1 은 .gitignore 로 추적 제외되어 GitHub 에 올라가지 않는다.
+# 나이스 개방포털(https://open.neis.go.kr) > 마이페이지 > 인증키 발급 에서 확인.
+
+$env:NEIS_TIMETABLE_KEY = '여기에_시간표_API_인증키'
+$env:NEIS_MEAL_KEY      = '여기에_급식표_API_인증키'
