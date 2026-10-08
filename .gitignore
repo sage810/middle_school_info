@@ -1,4 +1,61 @@
+# ──────────────────────────────────────────────────────────────
+# 보안: API 인증키 · 비밀번호 · 토큰 — 절대 커밋하지 않는다
+# (NEIS 키는 Apps Script 의 스크립트 속성(NEIS_KEY)에만 둔다.
+#  site.config.json 의 apiUrl·submitToken 은 페이지에 공개되는 값이라 커밋해도 된다.)
+# ──────────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.env
+*.local.ps1
+*.local.js
+*.local.mjs
+*.local.json
+!*.example
+**/neis.config.js
+secrets/
+secret/
+credentials/
+*secret*
+*credential*
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+*.asc
+*.gpg
+id_rsa*
+id_ed25519*
+*token*.json
+*apikey*
+*api-key*
+*api_key*
+service-account*.json
+client_secret*.json
+.clasprc.json
+.clasp.json
+.netrc
+.npmrc
+.pypirc
+.aws/
+.ssh/
+
+# ──────────────────────────────────────────────────────────────
+# Node — 설치물과 빌드 결과 (빌드 결과는 GitHub Actions 가 매번 새로 만든다)
+# ──────────────────────────────────────────────────────────────
+node_modules/
+dist/
+npm-debug.log*
+yarn-error.log*
+*.log
+.cache/
+.playwright/
+
+# ──────────────────────────────────────────────────────────────
 # OS 파일
+# ──────────────────────────────────────────────────────────────
 Thumbs.db
 ehthumbs.db
 Desktop.ini
@@ -6,28 +63,23 @@ Desktop.ini
 $RECYCLE.BIN/
 *.lnk
 
+# ──────────────────────────────────────────────────────────────
 # 임시 / 작업 파일
+# ──────────────────────────────────────────────────────────────
 *.tmp
 *.bak
+*.swp
+*~
 ~$*
 scratchpad/
+tmp/
+temp/
 
-# 에디터 설정
+# ──────────────────────────────────────────────────────────────
+# 에디터 · 도구 설정
+# ──────────────────────────────────────────────────────────────
 .vscode/
 .idea/
 *.code-workspace
-
-# Claude Code 작업용 임시 워크트리
 .claude/worktrees/
-
-# Node — 설치물과 빌드 결과 (빌드 결과는 GitHub Actions 가 매번 새로 만든다)
-node_modules/
-dist/
-
-# 보안: API 인증키 / 비밀정보 (NEIS 키는 Apps Script 의 스크립트 속성에 둔다)
-.env
-.env.*
-scripts/neis.local.ps1
-**/*.local.ps1
-**/neis.config.js
-secrets/
+.claude/settings.local.json
