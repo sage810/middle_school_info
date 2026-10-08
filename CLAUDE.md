@@ -1,5 +1,11 @@
 # 작업 규칙
 
+## 저장소 · 배포 주소
+
+- GitHub 저장소: https://github.com/sage810/middle_school_info (브랜치 `main`)
+- 학생용 사이트(GitHub Pages): https://sage810.github.io/middle_school_info/ — `main` 에 push 하면 GitHub Actions(`.github/workflows/pages.yml`)가 자동 배포
+- 차시 주소: `https://sage810.github.io/middle_school_info/<단원>/<차시>/`
+
 ## 시작할 때
 
 1. `git status` 로 변경사항 확인 — 커밋 안 된 게 있으면 먼저 알린다.
@@ -55,4 +61,4 @@
    스킬로 만들지 사용자에게 한 줄로 제안한다.
 4. 한국어 커밋 메시지로 커밋 → `git push`.
 5. push 하면 GitHub Actions 가 GitHub Pages 에 자동 배포한다 → 주소를 알려 준다:
-   `https://sage810.github.io/info-lesson/<단원>/<차시>/`
+   `https://sage810.github.io/middle_school_info/<단원>/<차시>/`
